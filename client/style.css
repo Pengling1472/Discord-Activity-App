@@ -1,0 +1,16 @@
+@import url( https://fonts.googleapis.com/css?family=Itim );
+
+body {
+    overflow: hidden;
+    background: #1b1b1f;
+}
+canvas {
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    position: fixed;
+}
+* {
+    margin: 0;
+}

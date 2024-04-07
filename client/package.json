@@ -1,0 +1,17 @@
+{
+    "name": "client",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "vite": "^5.0.8"
+    },
+    "dependencies": {
+        "@discord/embedded-app-sdk": "^1.0.2",
+        "canvas": "^2.11.2"
+    }
+}
