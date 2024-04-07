@@ -153,7 +153,7 @@ async function setupDiscordSdk() {
         scope: [ 'identify' ]
     } );
 
-    const response = await fetch( 'https://discord-activity-app.onrender.com/api/token', {
+    const response = await fetch( `${import.meta.env.VITE_URL}/api/token`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -171,7 +171,7 @@ async function setupDiscordSdk() {
 }
 
 async function getUser() {
-    const response = await fetch( 'https://discord-activity-app.onrender.com/getUserData', {
+    const response = await fetch( `${VITE_URL}/getUserData`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
