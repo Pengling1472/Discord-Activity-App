@@ -136,11 +136,11 @@ ticks()
 
 let auth;
 
-const discordSdk = new DiscordSDK( import.meta.env.VITE_DISCORD_CLIENT_ID );
+// const discordSdk = new DiscordSDK( import.meta.env.VITE_DISCORD_CLIENT_ID );
 
-setupDiscordSdk().then( getUser );
+// setupDiscordSdk().then( getUser );
 
-// test() 
+test() 
 
 async function setupDiscordSdk() {
     await discordSdk.ready();
@@ -171,7 +171,7 @@ async function setupDiscordSdk() {
 }
 
 async function getUser() {
-    const response = await fetch( `${VITE_URL}/getUserData`, {
+    const response = await fetch( `${import.meta.env.VITE_URL}/getUserData`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -189,21 +189,7 @@ async function getUser() {
     switchScript( 'menu' );
 }
 
-function test() {    
-    const data = {
-        _id: '404398972095037451',
-        user: { items: [Array], coins: 50, level: 3, score: 764, xp: 763 },
-        orientation: { asexuality: 22, straight: 0, gay: 78, text: 'Pretty Gay' },
-        waifu: {
-            attractive: '6.7',
-            teasing: '1.9',
-            fashion: '8.6',
-            loving: '5.0',
-            horny: '2.4',
-            cute: '6.1',
-            text: "is an S-tier waifu known for deserving all of the world's headpats."
-        }
-    }
+async function test() {    
     const user = {
         username: 'pingu1472',
         discriminator: '0',
@@ -212,6 +198,14 @@ function test() {
         public_flags: 4194368,
         global_name: 'Pingu1472'
     }
+
+    const data = await fetch( `${import.meta.env.VITE_URL}/getUserData`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify( user )
+    } );
 
     member.set( 'data', data )
     member.set( 'user', user )
