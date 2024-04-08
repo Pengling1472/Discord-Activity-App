@@ -190,22 +190,24 @@ async function getUser() {
 }
 
 async function test() {    
-    const user = {
+    const userResponse = {
         username: 'pingu1472',
         discriminator: '0',
         id: '404398972095037451',
-        avatar: 'https://cdn.discordapp.com/avatars/404398972095037451/f4395eacf8748c53c5cd5a6b1853064e.png?size=4096',
+        avatar: 'f4395eacf8748c53c5cd5a6b1853064e',
         public_flags: 4194368,
         global_name: 'Pingu1472'
     }
 
-    const data = await fetch( `${import.meta.env.VITE_URL}/getUserData`, {
+    const response = await fetch( `${import.meta.env.VITE_URL}/getUserData`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify( user )
+        body: JSON.stringify( JSON.stringify( userResponse ) )
     } );
+
+    const { data, user } = await response.json();
 
     member.set( 'data', data )
     member.set( 'user', user )
@@ -238,10 +240,10 @@ export function getAssets( url ) {
     let images;
 
     switch ( url ) {
-        case 'merchant/background': images = import.meta.glob( './assets/merchant/background/*.png', { eager: true, as: 'url' } ); break;
-        case 'merchant/diana':      images = import.meta.glob( './assets/merchant/diana/*.png', { eager: true, as: 'url' } ); break;
-        case 'merchant/nancy':      images = import.meta.glob( './assets/merchant/nancy/*.png', { eager: true, as: 'url' } ); break;
-        case 'fish':                images = import.meta.glob( './assets/fish/*.png', { eager: true, as: 'url' } ); break;
+        case 'merchant/background': images = import.meta.glob( './src/assets/merchant/background/*.png', { eager: true, as: 'url' } ); break;
+        case 'merchant/diana':      images = import.meta.glob( './src/assets/merchant/diana/*.png', { eager: true, as: 'url' } ); break;
+        case 'merchant/nancy':      images = import.meta.glob( './src/assets/merchant/nancy/*.png', { eager: true, as: 'url' } ); break;
+        case 'fish':                images = import.meta.glob( './src/assets/fish/*.png', { eager: true, as: 'url' } ); break;
     }
 
     document.getElementById( 'img' ).insertAdjacentHTML( 'beforeend', Object.keys( images ).map( url => `<img id=${url.split( '/' ).at( -1 ).split( '.' )[ 0 ]} src="${new URL( `${url}`, import.meta.url ).href }" style="visibility: hidden;">` ).join( '' ) )
