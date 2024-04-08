@@ -204,11 +204,11 @@ async function test() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify( JSON.stringify( userResponse ) )
+        body: JSON.stringify( userResponse )
     } );
 
     const { data, user } = await response.json();
-
+    
     member.set( 'data', data )
     member.set( 'user', user )
 
