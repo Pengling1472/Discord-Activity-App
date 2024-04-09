@@ -1,6 +1,7 @@
 import express from "express";
 import Chance from 'chance';
 import dotenv from "dotenv";
+import cors from 'cors';
 import fetch from "node-fetch";
 import mongoose from 'mongoose';
 dotenv.config( { path: '../.env' } );
@@ -77,6 +78,7 @@ const app = express();
 const port = 3000;
 
 app.use( express.json() );
+app.use( cors() )
 
 app.post( '/api/token', async ( req, res ) => {
     const response = await fetch( `https://discord.com/api/oauth2/token`, {
