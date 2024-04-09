@@ -1,3 +1,4 @@
+import * as path from "path";
 import { defineConfig } from 'vite';
 
 export default defineConfig( {
@@ -18,5 +19,10 @@ export default defineConfig( {
 			}
 		},
 		hmr: false
+	},
+	resolve: {
+		alias: {
+		  	"@assets": path.resolve( __dirname, "src/assets" ),
+		}
 	}
 } );

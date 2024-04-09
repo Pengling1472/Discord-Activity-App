@@ -236,15 +236,15 @@ export function switchScript( name ) {
     game.get( 'blackscreen' ).script = name;
 }
 
-export function getAssets( url ) {
+export function getAssets( dir ) {
     let images;
 
-    switch ( url ) {
-        case 'merchant/background': images = import.meta.glob( './src/assets/merchant/background/*.png', { eager: true, as: 'url' } ); break;
-        case 'merchant/diana':      images = import.meta.glob( './src/assets/merchant/diana/*.png', { eager: true, as: 'url' } ); break;
-        case 'merchant/nancy':      images = import.meta.glob( './src/assets/merchant/nancy/*.png', { eager: true, as: 'url' } ); break;
-        case 'fish':                images = import.meta.glob( './src/assets/fish/*.png', { eager: true, as: 'url' } ); break;
+    switch ( dir ) {
+        case 'merchant/background': images = import.meta.glob( '@assets/merchant/background/*.png', { eager: true, as: 'url' } ); break;
+        case 'merchant/diana':      images = import.meta.glob( '@assets/merchant/diana/*.png', { eager: true, as: 'url' } ); break;
+        case 'merchant/nancy':      images = import.meta.glob( '@assets/merchant/nancy/*.png', { eager: true, as: 'url' } ); break;
+        case 'fish':                images = import.meta.glob( '@assets/fish/*.png', { eager: true, as: 'url' } ); break;
     }
 
-    document.getElementById( 'img' ).insertAdjacentHTML( 'beforeend', Object.keys( images ).map( url => `<img id=${url.split( '/' ).at( -1 ).split( '.' )[ 0 ]} src="${new URL( `${url}`, import.meta.url ).href }" style="visibility: hidden;">` ).join( '' ) )
+    document.getElementById( 'img' ).insertAdjacentHTML( 'beforeend', Object.values( images ).map( url => `<img id=${url.split( '/' ).at( -1 ).split( '.' )[ 0 ].split( '-' )[ 0 ]} src="${new URL( url, import.meta.url ).href}" style="visibility: hidden;">` ).join( '' ) )
 }
