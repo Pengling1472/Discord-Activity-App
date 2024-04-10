@@ -11,16 +11,17 @@ await mongoose.connect( process.env.MONGO, {
     useUnifiedTopology: true
 } )
 
-const reqString = {
-    type: String,
-    required: true
-}
-const reqDecimal = {
-	type: mongoose.Types.Decimal128,
-	required: true
-}
+const reqString = { type: String, required: true }
+const reqDecimal = { type: mongoose.Types.Decimal128, required: true }
 
-const profileSchema = mongoose.Schema( {
+const personalModel = mongoose.Schema( {
+    _id: reqString,
+    name: reqString,
+    message: reqString,
+    amount: reqDecimal
+} )
+
+const profileModel = mongoose.Schema( {
     _id: reqString,
 	user: {
 		type: Object,
@@ -72,13 +73,15 @@ const profileSchema = mongoose.Schema( {
 	}
 } )
 
-const membersSchema = mongoose.model( 'members', profileSchema, 'members' )
+const profileSchema = mongoose.model( 'members', profileModel, 'members' )
+const personalSchema = mongoose.model( 'personal', personalModel, 'personal' )
 
 const app = express();
 const port = 3000;
 
+app.use( express.urlencoded( { extended: true } ) );
 app.use( express.json() );
-app.use( cors() )
+app.use( cors() );
 
 app.post( '/api/token', async ( req, res ) => {
     const response = await fetch( `https://discord.com/api/oauth2/token`, {
@@ -104,7 +107,7 @@ app.post( '/getUserData', async ( req, res ) => {
 
     user.avatar = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=4096`
 
-    let response = await membersSchema.findById( user.id )
+    let response = await profileSchema.findById( user.id )
 
     if ( !response ) {
         let straight = Math.floor( Math.random() * 101 );
@@ -183,13 +186,17 @@ app.post( '/getUserData', async ( req, res ) => {
     res.send( { data: response, user } );
 } );
 
-app.post( '/donation', ( req, res ) => {
+app.post( '/donation', async ( req, res ) => {
     res.sendStatus( 200 );
     
     const { data } = req.body;
     const { type, from_name, message, amount } = JSON.parse( data );
 
-    console.log( type, from_name, message, amount )
+    if ( type == 'Donation' ) await personalSchema.findByIdAndUpdate( 0, {
+        name: from_name,
+        message,
+        amount
+    }, { upsert: true } )
 } );
 
-app.listen( port, () => console.log( `Server listening at http://localhost:${port}` ) );
+app.listen( port, () => console.log( `Server is running!` ) );
