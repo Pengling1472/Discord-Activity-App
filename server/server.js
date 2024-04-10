@@ -181,6 +181,15 @@ app.post( '/getUserData', async ( req, res ) => {
     };
 
     res.send( { data: response, user } );
-} )
+} );
+
+app.post( '/donation', ( req, res ) => {
+    res.sendStatus( 200 );
+    
+    const { data } = req.body;
+    const { type, from_name, message, amount } = JSON.parse( data );
+
+    console.log( type, from_name, message, amount )
+} );
 
 app.listen( port, () => console.log( `Server listening at http://localhost:${port}` ) );
