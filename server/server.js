@@ -1,82 +1,21 @@
+import { getUserData, saveDonation, saveLevel } from "./src/mongoose.js";
+import { createServer } from 'http';;
+import { Server } from 'socket.io';
+
 import express from "express";
-import Chance from 'chance';
 import dotenv from "dotenv";
 import cors from 'cors';
 import fetch from "node-fetch";
-import mongoose from 'mongoose';
+import fs from 'fs';
 dotenv.config( { path: '../.env' } );
 
-await mongoose.connect( process.env.MONGO, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-} )
-
-const reqString = { type: String, required: true }
-const reqDecimal = { type: mongoose.Types.Decimal128, required: true }
-
-const personalModel = mongoose.Schema( {
-    _id: reqString,
-    name: reqString,
-    message: reqString,
-    amount: reqDecimal
-} )
-
-const profileModel = mongoose.Schema( {
-    _id: reqString,
-	user: {
-		type: Object,
-		default: {
-			score: {
-				type: Number,
-				default: 0
-			},
-			coins: {
-				type: Number,
-				default: 0
-			},
-			level: {
-				type: Number,
-				default: 1
-			},
-			xp: {
-				type: Number,
-				default: 0
-			},
-			items: {
-				type: Array
-			}
-		}
-	},
-	orientation: {
-		type: Object,
-		default: {
-			asexuality: reqDecimal,
-			straight:   reqDecimal,
-			gay:        reqDecimal
-		}
-	},
-	waifu: {
-		type: Object,
-		default: {
-			attractive: reqDecimal,
-			teasing:    reqDecimal,
-			fashion:    reqDecimal,
-			loving:     reqDecimal,
-			horny:      reqDecimal,
-			cute:       reqDecimal,
-			text:       reqString
-		}
-	},
-	games: {
-		type: Object,
-		default: {}
-	}
-} )
-
-const profileSchema = mongoose.model( 'members', profileModel, 'members' )
-const personalSchema = mongoose.model( 'personal', personalModel, 'personal' )
-
 const app = express();
+const server = createServer( app );
+const io = new Server( server, {
+    cors: {
+        origin: [ process.env.CLIENT_URL ]
+    }
+} );
 const port = 3000;
 
 app.use( express.urlencoded( { extended: true } ) );
@@ -107,96 +46,24 @@ app.post( '/getUserData', async ( req, res ) => {
 
     user.avatar = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=4096`
 
-    let response = await profileSchema.findById( user.id )
-
-    if ( !response ) {
-        let straight = Math.floor( Math.random() * 101 );
-        let gay = Math.floor( Math.random() * ( 100 - straight ) );
-        let asexuality = 100 - ( straight + gay );
-        let waifu = new Array();
-        let waifuText = [ [
-            'is a radiant',
-            'is an S-tier',
-            'is an A-grade',
-            'is a jealousy-inducing',
-            'is an underrated',
-            'is a cultured',
-            'is a perfect',
-            'is a tasteful',
-            'is an ABSOLUTE',
-            'is an EXALTED'
-        ], [
-            'for being cute online all day',
-            'for being a fucking badass',
-            'for bashing simps',
-            'for being everyone\'s mom',
-            'for loving anime',
-            'for their sheer babie energy',
-            'for being a violent tsundere',
-            'for deserving all of the world\'s headpats',
-            'for being DUMMY thicc',
-            'for kissing their friends',
-            'for posting lewds',
-            'for being a cuddlebug',
-            'for their "activities" on a private account'
-        ] ];
-
-        for ( let i = 0; i < 6; i++ ) waifu.push( Chance().weighted( [ 0, 1 ], [ 10, 90 ] ) == 0 ? 30 + ( Math.floor( Math.random() * 5 ) * 10 ) : ( Math.random() * 10 ).toFixed( 1 ) )
-
-        waifu = Chance().shuffle( waifu );
-        response = await membersSchema.create( {
-            _id: user.id,
-            user: {
-                items: [],
-                coins: 50,
-                level: 1,
-                score: 0,
-                xp: 0
-            },	
-            orientation: {
-                asexuality: asexuality,
-                straight: straight,
-                gay: gay,
-                text: straight > 85 ? 'Very Straight'
-                    : gay > 85 ? 'Very Gay'
-                    : asexuality > 70 ? 'Asexual'
-                    : straight > 75 ? 'Pretty Straight'
-                    : gay > 75 ? 'Pretty Gay'
-                    : straight > 55 ? 'Little Straight'
-                    : gay > 55 ? 'Little Gay'
-                    : straight > 45 && gay > 45 ? 'Bisexual'
-                    : straight > gay ? 'Bisexual but also a little straight'
-                    : 'Bisexual but also a little gay'
-            },
-            waifu: {
-                attractive: waifu[ 0 ],
-                teasing:    waifu[ 1 ],
-                fashion:    waifu[ 2 ],
-                loving:     waifu[ 3 ],
-                horny:      waifu[ 4 ],
-                cute:       waifu[ 5 ],
-                text:       `${waifuText[ 0 ][ Math.floor( Math.random() * waifuText.length ) ]} waifu known ${waifuText[ 1 ][ Math.floor( Math.random() * waifuText[ 1 ].length ) ]}.`
-            },
-            games: {}
-        } );
-
-        response.save();
-    };
-
-    res.send( { data: response, user } );
+    res.send( { data: await getUserData( user.id ), user } );
 } );
 
 app.post( '/donation', async ( req, res ) => {
     res.sendStatus( 200 );
-    
-    const { data } = req.body;
-    const { type, from_name, message, amount } = JSON.parse( data );
 
-    if ( type == 'Donation' ) await personalSchema.findByIdAndUpdate( 0, {
-        name: from_name,
-        message,
-        amount
-    }, { upsert: true } )
+    const { data } = req.body
+    const { type } = data
+
+    if ( type == 'Donation' ) saveDonation( JSON.parse( data ) )
 } );
 
-app.listen( port, () => console.log( `Server is running!` ) );
+server.listen( port, () => console.log( `Server is running!` ) );
+
+io.on( 'connection', socket => {
+    console.log( `${socket.id} connected` )
+
+    socket.on( 'export', async data => {
+        saveLevel( data )
+    } )
+} )

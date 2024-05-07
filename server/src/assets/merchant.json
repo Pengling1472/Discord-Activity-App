@@ -1,0 +1,64 @@
+{
+    "diana": {
+        "greet": [
+            "Hi, how can I help you ?",
+            "Welcome to my shop !",
+            "Hey, nice to see you !",
+            "Helloooo !",
+            "Hola !",
+            "Welcome to le fishe market !"
+        ],
+        "purchase": [
+            "Yippeeeeeeee !",
+            "Hu tao my beloved .",
+            "I kidnap your gatos !",
+            "I want chicken nuggiessss .",
+            "Gatos are very yummy, we got a whole menu !",
+            "Mi Perdonas .",
+            "~Le Fishe~",
+            "Yahooooo !",
+            "You should try playing Bandori !",
+            "Gracias .",
+            "THIS IS VERY EPIC !",
+            "YEAAAAAA LESSSS GOOOOO !",
+            "I have this cursed dream of a penguin tied up to a chair and got thrown off from a roof .",
+            "GIMMIE THE MONIEEEEZZZ !",
+            "I want to go to a hello kitty cafe .",
+            "I like taking my pet fish for a walk .",
+            "I AM GOING TO WASTE MI DINERO ON HU TAO !"
+        ],
+        "sell": [
+            "WAAAAAAAAA, MY MONEY !",
+            "I WILL MAKE THEM MY PET FISH !",
+            "I can pay mucho dinero with MONOPOLY MONEY !",
+            "I am not buying that .",
+            "YOU ARE NOT TAKING MI DINERO !"
+        ],
+        "leave": [
+            "See you later !",
+            "Goodbye and thank you !",
+            "Have a great day !",
+            "See you around !",
+            "Bring your gatos here !",
+            "Buy me some nuggies !"
+        ]
+    },
+    "nancy": {
+        "greet": [
+            "Step right up!",
+            "Hello there friend!",
+            "Hey, hey, come on in!",
+            "Step into my humble shop!",
+            "Top of the morning to ya!"
+        ],
+        "purchase": [
+            "Splendid choice! Here's your <item>.",
+            "Wonderful! Here's your <item>, thank you for shopping with us.",
+            "Thanks for your purchase!"
+        ],
+        "leave": [
+            "Farewell!",
+            "Until next time!"
+        ]
+    }
+}
