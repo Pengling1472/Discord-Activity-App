@@ -11,6 +11,7 @@ dotenv.config( { path: '../.env' } );
 const app = express();
 const server = createServer( app );
 const io = new Server( server, {
+    path: 'discord-activity-app.onrender.com',
     cors: {
         origin: [ process.env.CLIENT_URL ]
     }
