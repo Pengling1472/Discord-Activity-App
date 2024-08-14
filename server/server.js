@@ -16,7 +16,7 @@ const io = new Server( server, {
         origin: [ process.env.CLIENT_URL ]
     }
 } );
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use( express.urlencoded( { extended: true } ) );
 app.use( express.json() );
@@ -58,7 +58,7 @@ app.post( '/donation', async ( req, res ) => {
     if ( type == 'Donation' ) saveDonation( JSON.parse( data ) )
 } );
 
-server.listen( port, () => console.log( `Server is running!` ) );
+server.listen( port, () => console.log( `Server is running on port ${port}` ) );
 
 io.on( 'connection', socket => {
     console.log( `${socket.id} connected` )
