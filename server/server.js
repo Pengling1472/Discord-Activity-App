@@ -10,12 +10,7 @@ dotenv.config( { path: '../.env' } );
 
 const app = express();
 const server = createServer( app );
-const io = new Server( server, {
-    path: 'https://discord-activity-project-3e1f02eae002.herokuapp.com',
-    cors: {
-        origin: [ process.env.CLIENT_URL ]
-    }
-} );
+const io = new Server( server );
 const port = process.env.PORT || 3000;
 
 app.use( express.urlencoded( { extended: true } ) );
