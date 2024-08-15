@@ -53,12 +53,12 @@ app.post( '/donation', async ( req, res ) => {
     if ( type == 'Donation' ) saveDonation( JSON.parse( data ) )
 } );
 
-server.listen( port, () => console.log( `Server is running on port ${port}` ) );
-
 io.on( 'connection', socket => {
-    console.log( `${socket.id} connected` )
+    console.log( `User ${socket.id} connected` );
 
     socket.on( 'export', async data => {
         saveLevel( data )
     } )
-} )
+} );
+
+server.listen( port, () => console.log( `Server is running on port ${port}` ) );
