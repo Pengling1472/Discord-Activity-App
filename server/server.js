@@ -1,5 +1,5 @@
 import { getUserData, saveDonation, saveLevel } from "./src/mongoose.js";
-import { createServer } from 'http';;
+import { createServer } from 'http';
 import { Server } from 'socket.io';
 
 import express from "express";
@@ -37,6 +37,8 @@ app.post( '/api/token', async ( req, res ) => {
 } );
 
 app.post( '/getUserData', async ( req, res ) => {
+    console.log( req.body )
+
     const user = req.body
 
     user.avatar = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=4096`
