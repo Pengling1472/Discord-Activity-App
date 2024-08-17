@@ -10,16 +10,19 @@ dotenv.config( { path: '../.env' } );
 
 const app = express();
 const server = createServer( app );
-const io = new Server( server );
+const io = new Server( server, {
+    cors: {
+        origin: 'http://localhost:5173',
+        methods: [ 'GET', 'POST' ]
+    }
+ } );
 const port = process.env.PORT || 3000;
 
 app.use( express.urlencoded( { extended: true } ) );
 app.use( express.json() );
-app.use( cors() );
 
 async function checkAvatarUrl( userId, avatarId, format = 'png', size = 500 ) {
     const url = `https://cdn.discordapp.com/avatars/${userId}/${avatarId}.${format}?size=${size}`;
-    // https://cdn.discordapp.com/avatars/404398972095037451/f4395eacf8748c53c5cd5a6b1853064e.png
     
     try {
         const response = await fetch( url, { method: 'HEAD' } );
@@ -78,7 +81,8 @@ app.post( '/donation', async ( req, res ) => {
 } );
 
 io.on( 'connection', socket => {
-    console.log( `User ${socket.id} connected` );
+    console.log( `A client connected ${socket.id}` );
+    socket.emit( 'message', 'Hello from server' );
 
     socket.on( 'export', async data => {
         saveLevel( data )
