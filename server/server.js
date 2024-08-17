@@ -4,7 +4,6 @@ import { Server } from 'socket.io';
 
 import express from "express";
 import dotenv from "dotenv";
-import cors from 'cors';
 import fetch from "node-fetch";
 dotenv.config( { path: '../.env' } );
 
@@ -79,6 +78,10 @@ app.post( '/donation', async ( req, res ) => {
 
     if ( type == 'Donation' ) saveDonation( JSON.parse( data ) )
 } );
+
+app.get( '/test', async ( req, res ) => {
+	console.log( 'henlo' )
+} )
 
 io.on( 'connection', socket => {
     console.log( `A client connected ${socket.id}` );
