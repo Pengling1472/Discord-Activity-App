@@ -17,6 +17,26 @@ app.use( express.urlencoded( { extended: true } ) );
 app.use( express.json() );
 app.use( cors() );
 
+async function checkAvatarUrl( userId, avatarId, format = 'png', size = 500 ) {
+    const url = `https://cdn.discordapp.com/avatars/${userId}/${avatarId}.${format}?size=${size}`;
+    // https://cdn.discordapp.com/avatars/404398972095037451/f4395eacf8748c53c5cd5a6b1853064e.png
+    
+    try {
+        const response = await fetch( url, { method: 'HEAD' } );
+        const finalUrl = response.url;
+
+        console.log( response )
+  
+        if ( finalUrl.startsWith( 'https://images-ext-1.discordapp.net/external/' ) ) {
+            return 'External avatar';
+        } else {
+            return 'Internal avatar';
+        }
+    } catch ( error ) {
+        return 'Error'
+    }
+}
+
 app.post( '/api/token', async ( req, res ) => {
     const response = await fetch( `https://discord.com/api/oauth2/token`, {
         method: "POST",
@@ -37,11 +57,13 @@ app.post( '/api/token', async ( req, res ) => {
 } );
 
 app.post( '/getUserData', async ( req, res ) => {
-    console.log( req.body )
-
     const user = req.body
 
     user.avatar = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=4096`
+
+    const avatar = await fetch( user.avatar )
+
+    if ( !avatar.ok ) user.avatar = 'https://cdn.discordapp.com/embed/avatars/1.png'
 
     res.send( { data: await getUserData( user.id ), user } );
 } );
