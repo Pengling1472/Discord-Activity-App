@@ -46,22 +46,25 @@
     },
     "nancy": {
         "greet": [
-            "Step right up!",
-            "Hello there friend!",
-            "Hey, hey, come on in!",
-            "Step into my humble shop!",
-            "Top of the morning to ya!"
+            "happy/normal/Step right up!",
+            "normal/normal/Hello there friend!",
+            "happy/normal/Hey, hey, come on in!",
+            "normal/normal/Step into my humble shop!",
+            "happy/normal/Top of the morning to ya!"
         ],
         "purchase": [
-            "Splendid choice! Here's your <item>.",
-            "Wonderful! Here's your <item>, thank you for shopping with us.",
-            "Thanks for your purchase!",
-            "Im selling this limited item for the low low price of your entire fortune."
+            "happy/normal/Splendid choice! Here's your <item>.",
+            "normal/normal/Wonderful! Here's your <item>, thank you for shopping with us.",
+            "happy/normal/Thanks for your purchase!",
+            "normal/normal/Im selling this limited item for the low low price of your entire fortune."
+        ],
+        "sell": [
+            "angry/angry/I ain't buying that."
         ],
         "leave": [
-            "Farewell!",
-            "Until next time!",
-            "Thank you for your business!"
+            "happy/normal/Farewell!",
+            "normal/normal/Until next time!",
+            "happy/normal/Thank you for your business!"
         ]
     }
 }
