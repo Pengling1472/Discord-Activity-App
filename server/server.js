@@ -5,17 +5,18 @@ import { Server } from 'socket.io';
 import express from "express";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
+import fs from 'fs';
 dotenv.config( { path: '../.env' } );
 
+const port = process.env.PORT || 3000;
 const app = express();
-const server = createServer( app );
+const server = createServer( app ).listen( port, () => console.log( `Server is running on port ${port}` ) );
 const io = new Server( server, {
     cors: {
         origin: process.env.CLIENT_URL,
         methods: [ 'GET', 'POST' ]
     }
  } );
-const port = process.env.PORT || 3000;
 
 app.use( express.urlencoded( { extended: true } ) );
 app.use( express.json() );
@@ -79,17 +80,17 @@ app.post( '/donation', async ( req, res ) => {
     if ( type == 'Donation' ) saveDonation( JSON.parse( data ) )
 } );
 
-app.get( '/test', async ( req, res ) => {
-	console.log( 'henlo' )
-} )
-
 io.on( 'connection', socket => {
     console.log( `A client connected ${socket.id}` );
-    socket.emit( 'message', 'Hello from server' );
 
     socket.on( 'export', async data => {
         saveLevel( data )
     } )
-} );
 
-server.listen( port, () => console.log( `Server is running on port ${port}` ) );
+    socket.on( 'dialogue', async data => {
+        const { name, type } = data
+        const dialogues = JSON.parse( fs.readFileSync( './src/assets/merchant.json' ) );
+
+        io.to( socket.id ).emit( 'dialogue', ( i => i[ Math.floor( Math.random() * i.length ) ] )( dialogues[ name ][ type ] ).split( '/' ) )
+    } )
+} );

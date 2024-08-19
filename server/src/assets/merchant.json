@@ -1,46 +1,47 @@
 {
     "diana": {
         "greet": [
-            "Hi, how can I help you ?",
-            "Welcome to my shop !",
-            "Hey, nice to see you !",
-            "Helloooo !",
-            "Hola !",
-            "Welcome to le fishe market !"
+            "happy/normal/Hi, how can I help you ?", 
+            "normal/normal/Welcome to my shop !",
+            "happy/normal/Hey, nice to see you !",
+            "happy/normal/Helloooo !",
+            "normal/normal/Hola !",
+            "excited/excited/Welcome to le fishe market !",
+            "normal/normal/Hi, welcome to my shop! How can I help you?"
         ],
         "purchase": [
-            "Yippeeeeeeee !",
-            "Hu tao my beloved .",
-            "I kidnap your gatos !",
-            "I want chicken nuggiessss .",
-            "Gatos are very yummy, we got a whole menu !",
-            "Mi Perdonas .",
-            "~Le Fishe~",
-            "Yahooooo !",
-            "You should try playing Bandori !",
-            "Gracias .",
-            "THIS IS VERY EPIC !",
-            "YEAAAAAA LESSSS GOOOOO !",
-            "I have this cursed dream of a penguin tied up to a chair and got thrown off from a roof .",
-            "GIMMIE THE MONIEEEEZZZ !",
-            "I want to go to a hello kitty cafe .",
-            "I like taking my pet fish for a walk .",
-            "I AM GOING TO WASTE MI DINERO ON HU TAO !"
+            "excited/excited/Yippeeeeeeee !",
+            "excited/excited/Hu tao my beloved .",
+            "excited/excited/I kidnap your gatos !",
+            "excited/excited/I want chicken nuggiessss .",
+            "happy/normal/Gatos are very yummy, we got a whole menu !",
+            "normal/normal/Mi Perdonas .",
+            "normal/normal/~Le Fishe~",
+            "excited/excited/Yahooooo !",
+            "excited/excited/You should try playing Bandori !",
+            "happy/normal/Gracias .",
+            "excited/excited/THIS IS VERY EPIC !",
+            "excited/excited/YEAAAAAA LESSSS GOOOOO !",
+            "scared/scared/I have this cursed dream of a penguin tied up to a chair and got thrown off from a roof .",
+            "excited/excited/GIMMIE THE MONIEEEEZZZ !",
+            "happy/excited/I want to go to a hello kitty cafe .",
+            "happy/excited/I like taking my pet fish for a walk .",
+            "excited/excited/I AM GOING TO WASTE MI DINERO ON HU TAO !"
         ],
         "sell": [
-            "WAAAAAAAAA, MY MONEY !",
-            "I WILL MAKE THEM MY PET FISH !",
-            "I can pay mucho dinero with MONOPOLY MONEY !",
-            "I am not buying that .",
-            "YOU ARE NOT TAKING MI DINERO !"
+            "scared/scared/WAAAAAAAAA, MY MONEY !",
+            "excited/excited/I WILL MAKE THEM MY PET FISH !",
+            "excited/excited/I can pay mucho dinero with MONOPOLY MONEY !",
+            "angry/angry/I am not buying that .",
+            "angry/scared/YOU ARE NOT TAKING MI DINERO !"
         ],
         "leave": [
-            "See you later !",
-            "Goodbye and thank you !",
-            "Have a great day !",
-            "See you around !",
-            "Bring your gatos here !",
-            "Buy me some nuggies !"
+            "happy/normal/See you later !",
+            "happy/normal/Goodbye and thank you !",
+            "happy/normal/Have a great day !",
+            "normal/normal/See you around !",
+            "excited/excited/Bring your gatos here !",
+            "excited/excited/Buy me some nuggies !"
         ]
     },
     "nancy": {
@@ -54,11 +55,13 @@
         "purchase": [
             "Splendid choice! Here's your <item>.",
             "Wonderful! Here's your <item>, thank you for shopping with us.",
-            "Thanks for your purchase!"
+            "Thanks for your purchase!",
+            "Im selling this limited item for the low low price of your entire fortune."
         ],
         "leave": [
             "Farewell!",
-            "Until next time!"
+            "Until next time!",
+            "Thank you for your business!"
         ]
     }
 }
