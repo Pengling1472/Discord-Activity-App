@@ -12,9 +12,9 @@
         "purchase": [
             "excited/excited/Yippeeeeeeee !",
             "excited/excited/Hu tao my beloved .",
-            "excited/excited/I kidnap your gatos !",
+            "angry/normal/I kidnap your gatos !",
             "excited/excited/I want chicken nuggiessss .",
-            "happy/normal/Gatos are very yummy, we got a whole menu !",
+            "angry/normal/Gatos are very yummy, we got a whole menu !",
             "normal/normal/Mi Perdonas .",
             "normal/normal/~Le Fishe~",
             "excited/excited/Yahooooo !",
@@ -22,7 +22,7 @@
             "happy/normal/Gracias .",
             "excited/excited/THIS IS VERY EPIC !",
             "excited/excited/YEAAAAAA LESSSS GOOOOO !",
-            "scared/scared/I have this cursed dream of a penguin tied up to a chair and got thrown off from a roof .",
+            "angry/normal/I have this cursed dream of a penguin tied up to a chair and got thrown off from a roof .",
             "excited/excited/GIMMIE THE MONIEEEEZZZ !",
             "happy/excited/I want to go to a hello kitty cafe .",
             "happy/excited/I like taking my pet fish for a walk .",
@@ -31,7 +31,7 @@
         "sell": [
             "scared/scared/WAAAAAAAAA, MY MONEY !",
             "excited/excited/I WILL MAKE THEM MY PET FISH !",
-            "excited/excited/I can pay mucho dinero with MONOPOLY MONEY !",
+            "angry/normal/I can pay mucho dinero with MONOPOLY MONEY !",
             "angry/angry/I am not buying that .",
             "angry/scared/YOU ARE NOT TAKING MI DINERO !"
         ],
@@ -40,7 +40,7 @@
             "happy/normal/Goodbye and thank you !",
             "happy/normal/Have a great day !",
             "normal/normal/See you around !",
-            "excited/excited/Bring your gatos here !",
+            "angry/normal/Bring your gatos here !",
             "excited/excited/Buy me some nuggies !"
         ]
     },
