@@ -6,13 +6,14 @@
             "happy/normal/Hey, nice to see you !",
             "happy/normal/Helloooo !",
             "normal/normal/Hola !",
-            "excited/excited/Welcome to le fishe market !",
-            "normal/normal/Hi, welcome to my shop! How can I help you?"
+            "excited/excited/Welcome to le fishe market ! I sell le fishe :D",
+            "normal/normal/Hi, welcome to my shop! How can I help you?",
+            "angry/normal/YO YO YO WHATS GUDDDD !!! JUST HAD THE GOOD STUFF WITH MY FISH FAM, IT HITTING HARD FR FR !!"
         ],
         "purchase": [
             "excited/excited/Yippeeeeeeee !",
-            "excited/excited/Hu tao my beloved .",
-            "angry/normal/I kidnap your gatos !",
+            "happy/scared/Hu tao my beloved .",
+            "angry/normal/I kidnap your gatos ! WHERE ARE THEY AT ?! TELL MEEE !!!",
             "excited/excited/I want chicken nuggiessss .",
             "angry/normal/Gatos are very yummy, we got a whole menu !",
             "normal/normal/Mi Perdonas .",
@@ -21,12 +22,13 @@
             "excited/excited/You should try playing Bandori !",
             "happy/normal/Gracias .",
             "excited/excited/THIS IS VERY EPIC !",
-            "excited/excited/YEAAAAAA LESSSS GOOOOO !",
-            "angry/normal/I have this cursed dream of a penguin tied up to a chair and got thrown off from a roof .",
+            "excited/excited/YEAAAAAA LESSSS GOOOOOOOOOOOOOOOOO ! oh.. sorry, uhh.. gracias :D",
+            "angry/normal/I have this cursed dream of a penguin tied up to a chair and got thrown off from a roof ! hehe..",
             "excited/excited/GIMMIE THE MONIEEEEZZZ !",
             "happy/excited/I want to go to a hello kitty cafe .",
             "happy/excited/I like taking my pet fish for a walk .",
-            "excited/excited/I AM GOING TO WASTE MI DINERO ON HU TAO !"
+            "excited/excited/THANK YOU FOR YOUR PURCHASE, I AM GOING TO WASTE MI DINERO ON HU TAO !",
+            "normal/normal/I like to eat cats, they're tasty af, you should try eating one ! :D"
         ],
         "sell": [
             "scared/scared/WAAAAAAAAA, MY MONEY !",
@@ -50,7 +52,7 @@
             "normal/normal/Hello there friend!",
             "happy/normal/Hey, hey, come on in!",
             "normal/normal/Step into my humble shop!",
-            "happy/normal/Top of the morning to ya!"
+            "happy/normal/Top of the mornin to ya!"
         ],
         "purchase": [
             "happy/normal/Splendid choice! Here's your <item>.",
@@ -66,5 +68,28 @@
             "normal/normal/Until next time!",
             "happy/normal/Thank you for your business!"
         ]
-    }
+    },
+    "furniture": [
+        "couch",
+        "dresser",
+        "armchair",
+        "table",
+        "end-table",
+        "bookcase",
+        "fireplace",
+        "rug",
+        "cushion",
+        "cat-tree",
+        "lamp",
+        "window",
+        "tv",
+        "house-plants",
+        "paintings",
+        "decorative-door",
+        "shelf",
+        "fish-tank",
+        "dog-house",
+        "book-stack",
+        "mug"
+    ]
 }
