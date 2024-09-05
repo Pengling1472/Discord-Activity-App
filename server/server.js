@@ -43,6 +43,7 @@ async function checkAvatarUrl( userId, avatarId, format = 'png', size = 500 ) {
 
 app.post( 'interactions', verifyKeyMiddleware( process.env.CLIENT_PUBLIC_KEY ), async ( req, res ) => {
     const message = req.body;
+    console.log( message )
     if ( message.type == InteractionType.APPLICATION_COMMAND ) {
         res.send({
             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
