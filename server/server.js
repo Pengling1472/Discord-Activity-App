@@ -1,3 +1,4 @@
+import { InteractionResponseType, InteractionType, verifyKeyMiddleware } from 'discord-interactions'
 import { getUserData, saveDonation, saveLevel } from "./src/mongoose.js";
 import { createServer } from 'http';
 import { Server } from 'socket.io';
@@ -39,6 +40,18 @@ async function checkAvatarUrl( userId, avatarId, format = 'png', size = 500 ) {
         return 'Error'
     }
 }
+
+app.post( 'interactions', verifyKeyMiddleware( process.env.CLIENT_PUBLIC_KEY ), async ( req, res ) => {
+    const message = req.body;
+    if ( message.type == InteractionType.APPLICATION_COMMAND ) {
+        res.send({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: {
+                content: 'Hello world',
+            },
+        } )
+    }
+} )
 
 app.post( '/api/token', async ( req, res ) => {
     const response = await fetch( `https://discord.com/api/oauth2/token`, {
